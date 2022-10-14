@@ -1,4 +1,4 @@
 #!/usr/bin/python3
-def magic_string(string=[]):
-    string += ["Holberton"]
-    return(", ".join(string))
+def magic_string(holder={'counter': 0}):
+    holder['counter'] += 1
+    return (', '.join(['BestSchool'] * (holder['counter'])))
