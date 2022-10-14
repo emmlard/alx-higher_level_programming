@@ -61,4 +61,3 @@ def matrix_mul(m_a, m_b):
                 new_matrix[i][j] += (m_a[i][k] * m_b[k][j])
 
     return new_matrix
-
