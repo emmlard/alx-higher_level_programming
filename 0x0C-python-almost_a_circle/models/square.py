@@ -1,76 +1,77 @@
 #!/usr/bin/python3
 """
-This module contains the class Square
+This program define the class Square
 """
-from models.rectangle import Rectangle
+from .rectangle import Rectangle
 
 
 class Square(Rectangle):
     """
-    This class contains instantiation of the class
+    Class Square this class inheritance from Rectangle class.
     """
+
+    # Constructor
     def __init__(self, size, x=0, y=0, id=None):
         """
-        This function is the instantiation of the
-        square class
+        Constructor of a Square
+        Args:
+          - size: int
+          - x: int
+          - y: int
+          - id: int
         """
         super().__init__(size, size, x, y, id)
 
-    def __str__(self):
+    # Public Methods
+    def update(self, *args, **kwargs):
         """
-        returns string representation of square
+        Update the attributes of the Square
+        Args [Optional each parameter]:
+          *args form:
+            - Rectangle.update(id:int, size:int, x:int, y:int)\n
+          **kwargs form:
+            - Rectangle.update(id=int, size=int, x=int, y=int)
         """
-        return ("[Square] ({}) {:d}/{:d} - {:d}".format
-                (self.id, self.x, self.y, self.width))
+        keys = ["id", "size", "x", "y"]
+        len_keys, len_args = len(keys), len(args)
 
+        # Maybe refactor because setter of size and use update
+        if (args) and (args[0] is not None):
+            to_update = len_keys if (len_args > len_keys) else len_args
+            for i in range(to_update):
+                setattr(self, keys[i], args[i])
+        elif (kwargs is not None):
+            for key, value in kwargs.items():
+                if hasattr(self, key):
+                    setattr(self, key, value)
+
+    def to_dictionary(self):
+        """Return the representation of the instance Square"""
+        return ({
+            'id': self.id,
+            'size': self.width,
+            'x': self.x,
+            'y': self.y,
+        })
+
+    # Magic Methods
+    def __str__(self):
+        """Informal representation of a Square Instance"""
+        return ("[Square] ({:d}) {:d}/{:d} - {:d}"
+                .format(self.id, self.x, self.y, self.width))
+
+    # Getters and Setters
     @property
     def size(self):
-        """
-        This function returns the size (width)
-        """
+        """Getter of the private attribute \"size\""""
         return (self.width)
 
     @size.setter
     def size(self, value):
         """
-        This function sets the size (width and height)
+        Setter of the private attribute size
+        Args:
+          - value: int
         """
         self.width = value
         self.height = value
-
-    def update(self, *args, **kwargs):
-        """
-        This function assigns values and attributes
-        """
-        if len(args):
-            for i, j in enumerate(args):
-                if i == 0:
-                    self.id = j
-                if i == 1:
-                    self.size = j
-                if i == 2:
-                    self.x = j
-                if i == 3:
-                    self.y = j
-        else:
-            if "id" in kwargs:
-                self.id = kwargs["id"]
-            if "size" in kwargs:
-                self.size = kwargs["size"]
-            if "x" in kwargs:
-                self.x = kwargs["x"]
-            if "y" in kwargs:
-                self.y = kwargs["y"]
-
-    def to_dictionary(self):
-        """
-        This function contains the dictionary representation
-        of the square
-        """
-        sq = {}
-        sq["id"] = self.id
-        sq["size"] = self.size
-        sq["x"] = self.x
-        sq["y"] = self.y
-
-        return (sq)
