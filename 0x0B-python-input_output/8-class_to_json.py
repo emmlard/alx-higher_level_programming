@@ -1,14 +1,14 @@
 #!/usr/bin/python3
 """
-This file defines a function that
-returns the dictionary descp with
-simple data structure for json
-serialization of obj
+This program return the dict representation of a instance of Class.
 """
 
 
 def class_to_json(obj):
     """
-    function that returns dict descp
+    Returns the dictionary description with simple data structure
+    Args:
+      - obj: instance of class
     """
+
     return (obj.__dict__)

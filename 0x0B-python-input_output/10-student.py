@@ -1,18 +1,21 @@
 #!/usr/bin/python3
 """
-This module creates a student class
-with public attributes and retrives
-json dictionary rep
+This program define a Student in a class
 """
 
 
-class Student:
+class Student():
     """
-    student class with public instances
+    Class of a student
     """
+
     def __init__(self, first_name, last_name, age):
         """
-        instantiation of attr
+        Constructor of a student
+        Args:
+          - first_name: str
+          - last_name: str
+          - age: int
         """
         self.first_name = first_name
         self.last_name = last_name
@@ -20,10 +23,19 @@ class Student:
 
     def to_json(self, attrs=None):
         """
-        function returns dict repres
-        of instance
+        Return the dict representation of the instance
+        Args:
+          - attrs: list (None default)
         """
+
+        result = {}
+
         if attrs is None:
             return (self.__dict__)
-        return ({key: value for key, value in self.__dict__.items()
-                 if key in attrs})
+
+        for attr in attrs:
+            value = self.__dict__.get(attr)
+            if value is not None:
+                result[attr] = value
+
+        return (result)

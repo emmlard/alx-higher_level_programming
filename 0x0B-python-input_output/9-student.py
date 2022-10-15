@@ -1,18 +1,21 @@
 #!/usr/bin/python3
 """
-This module creates a class
-student with defined attributes
+This program define a Student in a class
 """
 
 
-class Student:
+class Student():
     """
-    This class is defining the attributes for
-    the said class
+    Class of a student
     """
+
     def __init__(self, first_name, last_name, age):
         """
-        This is the instantiation of the attributes
+        Constructor of a student
+        Args:
+          - first_name: str
+          - last_name: str
+          - age: int
         """
         self.first_name = first_name
         self.last_name = last_name
@@ -20,6 +23,6 @@ class Student:
 
     def to_json(self):
         """
-        returns dictionary rep of all instances
+        Return the dict representation of the instance
         """
         return (self.__dict__)

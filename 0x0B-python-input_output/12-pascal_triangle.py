@@ -1,21 +1,32 @@
 #!/usr/bin/python3
 """
-This file defines a function
-that creates a pascals triangle
+This program makes a pascal triangle
 """
 
 
 def pascal_triangle(n):
     """
-    function defining the logic to
-    create pascal's triangle
+    Makes a list of lists in representation of a
+    pascal triangle.
+    n: Levels of the triangle
+    Args:
+      - n: int
     """
-    if n <= 0:
+    if (n <= 0):
         return ([])
-    if n == 1:
-        return [[1]]
-    pascal = [[1]]
-    for i in range(n - 1):
-        pascal.append([x + n for x, n in zip(pascal[-1] + [0],
-                                             [0] + pascal[-1])])
+    elif (n == 1):
+        return ([[1]])
+    elif (n == 2):
+        return ([[1], [1, 1]])
+
+    pascal = [[1], [1, 1]]
+
+    for i in range(1, n - 1):
+        new_list = []
+        new_list.append(1)
+        for j in range(1, len(pascal)):
+            new_list.append(pascal[i][j - 1] + pascal[i][j])
+        new_list.append(1)
+        pascal.append(new_list)
+
     return (pascal)
